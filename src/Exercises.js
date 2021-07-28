@@ -1,29 +1,17 @@
 import React from "react";
 import ExerciseCard from "./ExerciseCard";
 import DrumData from "./DrumData";
+import { uuid } from 'uuidv4';
 
 class Exercises extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "Singles", currentTempo: "", goalTempo: "", drumData: [
-        {
-          id: 1, name: "Singles"
-        },
-        {
-            id: 2, name: "Doubles"
-        },
-        {
-            id: 3, name: "Triplets"
-        },
-        {
-            id: 4, name: "Paradiddles"
-        },
-        {
-            id: 5, name: "Flams"
-        }
-    ] };
+    this.state = { value: "Singles", currentTempo: "", goalTempo: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
+
+  
 
   handleSubmit(event) {
     alert(
@@ -36,7 +24,8 @@ class Exercises extends React.Component {
         "."
     );
     event.preventDefault();
-    this.props.handleAddExercise(this.state);
+    this.props.handleAddExercise({...this.state, id: uuid() });
+    
   }
 
   handleChange = (event) => {
@@ -59,7 +48,8 @@ class Exercises extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <h2>My Exercises</h2>
           <select value={this.state.value} onChange={this.handleChange}>
-            {this.state.drumData.map((exercise) => (
+            {DrumData.map((exercise) => (
+                
               <option key={exercise.id} value={exercise.name}>{exercise.name}</option>
             ))}
           </select>
@@ -86,11 +76,9 @@ class Exercises extends React.Component {
         <h2>Current Exercises:</h2>
         {this.props.exercises.map((exercise) => (
           <ExerciseCard
-            key={exercise.value}
             name={exercise.value}
             currentTempo={exercise.currentTempo}
             goalTempo={exercise.goalTempo}
-            handleInput={exercise.handleInput}
             updateTempos={this.handleUpdateTempos}
           />
         ))}

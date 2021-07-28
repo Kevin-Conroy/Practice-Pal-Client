@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./App.css";
 import EditTempos from "./EditTempos";
 
+
 class ExerciseCard extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,7 @@ class ExerciseCard extends React.Component {
           <h3>Name: {this.props.name}</h3>
           <h5>Current Tempo: {this.props.currentTempo}</h5>
           <h5>Goal Tempo: {this.props.goalTempo}</h5>
-          <Link to={`/edittempos/${this.props.name}`}>
+          <Link to={`/edittempos/${this.props.id}`}>
             <button>Edit Tempos</button>
           </Link>
         </div>

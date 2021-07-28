@@ -11,10 +11,12 @@ class EditTempos extends React.Component {
     };
   }
 
+  
+
   handleSubmit(event) {
     alert(
       "Your new tempos for " +
-        this.props.exercises.name +
+        this.props.exercise.name +
         " are Current: " +
         this.state.currentTempo +
         " and Goal: " +
@@ -23,21 +25,24 @@ class EditTempos extends React.Component {
     );
     event.preventDefault();
     console.log(this.props.exercises);
+    console.log(this.props.match.params.value)
+    
+    this.handleUpdateTempos(this.state);
+    this.props.updateExercise(this.state)
     this.props.history.push("/exercises");
-    this.handleUpdateTempos(this.state)
   }
 
   handleInput = (field) => (event) => {
     this.setState({ [field]: event.target.value });
   };
 
-  handleUpdateTempos = (exercise) => ({
-    ...exercise,
-    currentTempo: this.state.currentTempo,
-    goalTempo: this.state.goalTempo,
-  });
+  handleUpdateTempos = (exercise) => {
+    this.setState({
+      currentTempo: this.state.currentTempo,
+      goalTempo: this.state.goalTempo,
+    });
+  };
 
-  
 
   render() {
     return (
