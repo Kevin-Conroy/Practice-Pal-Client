@@ -40,7 +40,7 @@ class EditTempos extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <h2>Update Tempos for {this.props.exerciseToUpdate.value}</h2>
+          <h2>Update Tempos for {this.props.exerciseToUpdate.name}</h2>
           <br></br>
           <p>Current Tempo:</p>
           <input

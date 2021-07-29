@@ -6,7 +6,7 @@ import { uuid } from 'uuidv4';
 class Exercises extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "Singles", currentTempo: "", goalTempo: "" };
+    this.state = { name: "Singles", currentTempo: "", goalTempo: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
     
   }
@@ -16,7 +16,7 @@ class Exercises extends React.Component {
   handleSubmit(event) {
     alert(
       "Your chosen exercise is " +
-        this.state.value +
+        this.state.name +
         " with a current tempo of " +
         this.state.currentTempo +
         " and a goal tempo of " +
@@ -29,7 +29,7 @@ class Exercises extends React.Component {
   }
 
   handleChange = (event) => {
-    this.setState({ value: event.target.value });
+    this.setState({ name: event.target.value });
   };
 
   handleInput = (field) => (event) => {
@@ -77,7 +77,7 @@ class Exercises extends React.Component {
         {this.props.exercises.map((exercise) => (
           <ExerciseCard
             id={exercise.id}
-            name={exercise.value}
+            name={exercise.name}
             currentTempo={exercise.currentTempo}
             goalTempo={exercise.goalTempo}
             updateTempos={this.handleUpdateTempos}
