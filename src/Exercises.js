@@ -76,6 +76,7 @@ class Exercises extends React.Component {
         <h2>Current Exercises:</h2>
         {this.props.exercises.map((exercise) => (
           <ExerciseCard
+            id={exercise.id}
             name={exercise.value}
             currentTempo={exercise.currentTempo}
             goalTempo={exercise.goalTempo}

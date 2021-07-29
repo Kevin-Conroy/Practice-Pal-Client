@@ -6,32 +6,23 @@ class EditTempos extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      currentTempo: "",
-      goalTempo: "",
+      currentTempo: this.props.exerciseToUpdate.currentTempo,
+      goalTempo: this.props.exerciseToUpdate.goalTempo,
+      id: this.props.exerciseToUpdate.id,
+      name: this.props.exerciseToUpdate.value
     };
   }
 
-  
-
   handleSubmit(event) {
-    alert(
-      "Your new tempos for " +
-        this.props.exercise.name +
-        " are Current: " +
-        this.state.currentTempo +
-        " and Goal: " +
-        this.state.goalTempo +
-        "."
-    );
     event.preventDefault();
+    
+    
     console.log(this.props.exercises);
-    console.log(this.props.match.params.value)
     
     this.handleUpdateTempos(this.state);
     this.props.updateExercise(this.state)
     this.props.history.push("/exercises");
   }
-
   handleInput = (field) => (event) => {
     this.setState({ [field]: event.target.value });
   };
@@ -40,22 +31,22 @@ class EditTempos extends React.Component {
     this.setState({
       currentTempo: this.state.currentTempo,
       goalTempo: this.state.goalTempo,
+      id: this.state.id,
+      name: this.state.name
     });
   };
-
 
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <h2>Update Tempos</h2>
+          <h2>Update Tempos for {this.props.exerciseToUpdate.value}</h2>
           <br></br>
-          <h4></h4>
           <p>Current Tempo:</p>
           <input
             id="current"
             type="text"
-            placeholder="90"
+            value={this.state.currentTempo}
             onChange={this.handleInput("currentTempo")}
           />
           <br></br>
@@ -63,7 +54,7 @@ class EditTempos extends React.Component {
           <input
             id="goal"
             type="text"
-            placeholder="100"
+            value={this.state.goalTempo}
             onChange={this.handleInput("goalTempo")}
           />
           <br></br>

@@ -12,10 +12,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.updateUser = this.updateUser.bind(this);
+    this.handleUpdateExercise = this.handleUpdateExercise.bind(this)
     this.state = {
       username: "",
       exercises: [],
-      updatedExercises: []
     };
   }
 
@@ -26,16 +26,16 @@ class App extends React.Component {
     });
   }
 
-
   handleAddExercise = (exercise) => {
     this.setState({
       exercises: [...this.state.exercises, exercise],
     });
   };
 
-
   handleUpdateExercise = (updatedExercise) => {
     console.log(updatedExercise);
+    console.log(updatedExercise.id)
+    console.log(updatedExercise.name)
     const indexToUpdate = this.state.exercises.findIndex(
       (i) => i.id === updatedExercise.id
     );
@@ -43,6 +43,7 @@ class App extends React.Component {
     if (indexToUpdate !== -1) {
     const updatedExercises = [...this.state.exercises]
     updatedExercises[indexToUpdate] = updatedExercise;
+    console.log(updatedExercise)
     this.setState({ exercises: updatedExercises })
     }
   };
@@ -72,12 +73,21 @@ class App extends React.Component {
             <Route
               exact
               path="/edittempos/:id"
-              render={(props) => (
-                <EditTempos
+              render={(props) => {
+                const exerciseToUpdate = this.state.exercises.find(
+                  (e) =>
+                    e.id ===
+                   (props.match.params.id)
+                );
+                console.log(exerciseToUpdate);
+                return (
+                <EditTempos 
                   exercises={this.state.exercises}
+                  exerciseToUpdate={exerciseToUpdate}
                   updateExercise={this.handleUpdateExercise}
+                  
                 />
-              )}
+              )}}
             />
           </Router>
         </div>
