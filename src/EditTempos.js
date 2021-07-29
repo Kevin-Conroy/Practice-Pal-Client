@@ -9,7 +9,7 @@ class EditTempos extends React.Component {
       currentTempo: this.props.exerciseToUpdate.currentTempo,
       goalTempo: this.props.exerciseToUpdate.goalTempo,
       id: this.props.exerciseToUpdate.id,
-      name: this.props.exerciseToUpdate.value
+      name: this.props.exerciseToUpdate.name
     };
   }
 
