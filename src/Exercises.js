@@ -3,6 +3,7 @@ import ExerciseCard from "./ExerciseCard";
 import ExerciseData from "./ExerciseData";
 import { uuid } from "uuidv4";
 import axios from "axios";
+import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 
 class Exercises extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Exercises extends React.Component {
     const options = {
       method: "POST",
       body: JSON.stringify(exercise),
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -110,7 +112,7 @@ class Exercises extends React.Component {
   }
 }
 
-export default Exercises;
+export default withRouter(Exercises);
 
 /*
   handleSubmit = (event) => {

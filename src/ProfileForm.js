@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
 
 class ProfileForm extends React.Component {
   constructor(props) {
@@ -21,11 +21,35 @@ class ProfileForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (!this.state.username || !this.state.password) {
-      alert("Please enter a username & a password");
-    } else {
-      this.props.updateUser(this.state.username);
+      alert("Username and password are required");
     }
-    this.props.history.push('/exercises');
+    const user = this.state;
+    const url = "http://localhost:8000/user";
+    const options = {
+      method: "POST",
+      body: JSON.stringify(user),
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    console.log(user);
+    fetch(url, options)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong, please try again later");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        this.props.addUser(data);
+      })
+      .catch((err) => {
+        this.setState({
+          error: err.message,
+        });
+      });
   }
 
   render() {
@@ -48,7 +72,7 @@ class ProfileForm extends React.Component {
           onChange={(event) => this.updatePassword(event.target.value)}
         ></input>
         <br></br>
-        <button type="submit" onClick={this.handleSubmit.bind(this)}>
+        <button onClick={this.handleSubmit.bind(this)}>
           Submit
         </button>
       </form>

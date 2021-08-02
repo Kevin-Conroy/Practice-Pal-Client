@@ -1,30 +1,34 @@
 import React from "react";
 import Welcome from "./Welcome";
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import Header from "./Header";
 import ProfileForm from "./ProfileForm";
 import Exercises from "./Exercises";
 import EditTempos from "./EditTempos";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.updateUser = this.updateUser.bind(this);
+    this.addUser = this.addUser.bind(this);
     this.handleUpdateExercise = this.handleUpdateExercise.bind(this)
     this.state = {
-      username: "",
+      userId: "",
       exercises: [],
     };
   }
 
-  updateUser(username) {
-    console.log(username);
+  addUser(user) {
+    console.log(user);
     this.setState({
-      username,
-    });
+      userId: user.id
+    },
+    () => history.push("/exercises"));
   }
 
   handleAddExercise = (exercise) => {
@@ -59,7 +63,7 @@ class App extends React.Component {
             <Route
               exact
               path="/profileform"
-              render={() => <ProfileForm updateUser={this.updateUser} />}
+              render={() => <ProfileForm addUser={this.addUser} />}
             />
             <Route
               exacto
@@ -77,7 +81,7 @@ class App extends React.Component {
               render={(props) => {
                 const exerciseToUpdate = this.state.exercises.find(
                   (e) =>
-                    e.id ===
+                    String(e.id) ===
                    (props.match.params.id)
                 );
                 console.log(exerciseToUpdate);
@@ -97,7 +101,7 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);
 
 /*
 its not actually updating any existing exercise in state
