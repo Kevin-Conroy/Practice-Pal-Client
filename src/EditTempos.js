@@ -10,6 +10,7 @@ class EditTempos extends React.Component {
       goalTempo: this.props.exerciseToUpdate.goalTempo,
       id: this.props.exerciseToUpdate.id,
       name: this.props.exerciseToUpdate.name
+      
     };
   }
 

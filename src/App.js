@@ -1,12 +1,13 @@
 import React from "react";
 import Welcome from "./Welcome";
 import "./App.css";
-import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./Header";
 import ProfileForm from "./ProfileForm";
 import Exercises from "./Exercises";
 import EditTempos from "./EditTempos";
-import { uuid } from "uuidv4";
+
+
 
 class App extends React.Component {
   constructor(props) {

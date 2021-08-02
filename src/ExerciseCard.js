@@ -18,7 +18,7 @@ class ExerciseCard extends React.Component {
     return (
       <main className="box">
         <div>
-          <h3>Name: {this.props.name}</h3>
+          <h3>{this.props.name}</h3>
           <h5>Current Tempo: {this.props.currentTempo}</h5>
           <h5>Goal Tempo: {this.props.goalTempo}</h5>
           <Link to={`/edittempos/${this.props.id}`}>
