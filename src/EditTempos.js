@@ -26,7 +26,7 @@ class EditTempos extends React.Component {
       goalTempo: this.state.goalTempo,
     };
 
-    const url = `http://localhost:8000/edittempos/${id}`;
+    const url = `https://enigmatic-fjord-69798.herokuapp.com/edittempos/${id}`;
     const options = {
       method: "PATCH",
       body: JSON.stringify(updatedExercise),

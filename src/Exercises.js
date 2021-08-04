@@ -31,7 +31,7 @@ class Exercises extends React.Component {
       currentTempo: this.state.currentTempo,
       goalTempo: this.state.goalTempo,
     };
-    const url = `http://localhost:8000/exercises`;
+    const url = `https://enigmatic-fjord-69798.herokuapp.com/exercises`;
     const options = {
       method: "POST",
       body: JSON.stringify(exercise),

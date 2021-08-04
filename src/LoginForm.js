@@ -23,7 +23,7 @@ class LoginForm extends React.Component {
     event.preventDefault();
     const { username, password } = this.state;
     axios
-      .post("http://localhost:8000/login", { username, password })
+      .post("https://enigmatic-fjord-69798.herokuapp.com/login", { username, password })
       .then((response) => response.data)
       .then((response) => {
         if (!response.successfulLogin) {
