@@ -66,7 +66,7 @@ class ProfileForm extends React.Component {
         <label>password:</label>
         <input
           required
-          type="text"
+          type="password"
           id="password"
           value={this.state.password}
           onChange={(event) => this.updatePassword(event.target.value)}
