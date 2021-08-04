@@ -24,7 +24,7 @@ class ProfileForm extends React.Component {
       alert("Username and password are required");
     }
     const user = this.state;
-    const url = "http://localhost:8000/user";
+    const url = "https://enigmatic-fjord-69798.herokuapp.com/user";
     const options = {
       method: "POST",
       body: JSON.stringify(user),
