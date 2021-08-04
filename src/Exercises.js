@@ -12,19 +12,26 @@ class Exercises extends React.Component {
       name: "DRUMS: Singles",
       currentTempo: "",
       goalTempo: "",
-      userId: "1",
     };
     console.log(this.state);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   handleSubmit(event) {
     event.preventDefault();
     if (!this.state.currentTempo || !this.state.goalTempo) {
       alert("Current and goal tempo are required");
     }
-    const exercise = this.state;
-    const url = "http://localhost:8000/exercises";
+    const id = this.props.userId;
+    console.log(id);
+    const exercise = {
+      userId: this.props.userId,
+      name: this.state.name,
+      currentTempo: this.state.currentTempo,
+      goalTempo: this.state.goalTempo,
+    };
+    const url = `http://localhost:8000/exercises/:userid`;
     const options = {
       method: "POST",
       body: JSON.stringify(exercise),
@@ -43,6 +50,12 @@ class Exercises extends React.Component {
       })
       .then((data) => {
         console.log(data);
+
+        this.setState({
+          name: "",
+          currentTempo: "",
+          goalTempo: "",
+        });
         this.props.handleAddExercise(data);
       })
       .catch((err) => {
@@ -99,7 +112,7 @@ class Exercises extends React.Component {
         {this.props.exercises.length > 0 && <h2>Current Exercises:</h2>}
         {this.props.exercises.map((exercise) => (
           <ExerciseCard
-            userId={exercise.userId}
+            userId={this.props.userId}
             id={exercise.id}
             name={exercise.name}
             currentTempo={exercise.currentTempo}
@@ -113,65 +126,3 @@ class Exercises extends React.Component {
 }
 
 export default withRouter(Exercises);
-
-/*
-  handleSubmit = (event) => {
-    event.preventDefault();
-    if (!this.state.name || !this.state.city || !this.state.state) {
-      alert("Name, city, and state are required");
-  }
-const recommendation = this.state
-const url ='https://food-on-tour-api.herokuapp.com/addrecommendation';
-const options = {
-  method: 'POST',
-  body: JSON.stringify(recommendation),
-  headers: {
-    "Content-Type": "application/json",
-  }
-};
-fetch(url, options)
-  .then(res => {
-    if(!res.ok) {
-      throw new Error('Something went wrong, please try again later');
-    }
-    return res.json();
-  })
-  .then(data => {
-    console.log(data)
-    this.setState({
-
-      name: "",
-      city: "",
-      state: "",
-      website: "",
-      priceRange: ""
-      
-    
-    });
-    
-    this.props.handleSubmit(data);
-  })
-  .catch(err => {
-    this.setState({
-      error: err.message
-    });
-  });
-  this.props.addRecommendation(this.state);
-} 
-
-    /*axios.post('http://localhost:8000/exercises', {
-      name: this.state.name,
-      userId: this.state.userId,
-      currentTempo: this.state.currentTempo,
-      goalTempo: this.state.goalTempo
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-/*
-
-*/

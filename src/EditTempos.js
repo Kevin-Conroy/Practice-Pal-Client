@@ -18,7 +18,7 @@ class EditTempos extends React.Component {
     console.log(this.props.exercises);
     this.handleUpdateTempos(this.state);
     this.props.updateExercise(this.state);
-    this.props.history.push("/exercises");
+    this.props.history.push(`/exercises/${this.props.userId}`);
     const id = this.state.id;
     console.log(id);
     const updatedExercise = {
