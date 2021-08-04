@@ -18,6 +18,7 @@ class App extends React.Component {
     super(props);
     this.addUser = this.addUser.bind(this);
     this.handleUpdateExercise = this.handleUpdateExercise.bind(this)
+    this.handleLoadExercises = this.handleLoadExercises.bind(this)
     this.setLoggedInUser = this.setLoggedInUser.bind(this)
     this.state = {
       userId: "",
@@ -45,6 +46,11 @@ class App extends React.Component {
       exercises: [...this.state.exercises, exercise],
     });
   };
+
+  handleLoadExercises(exercises) {
+    this.setState({ exercises })
+  }
+  
 
   handleUpdateExercise = (updatedExercise) => {
     console.log(updatedExercise);
@@ -76,7 +82,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/exercises/:id"
+              path="/exercises"
               render={() => (
                 <Exercises
                   userId={this.state.userId}
@@ -113,6 +119,7 @@ class App extends React.Component {
                   <LoginForm
                     setLoggedInUser={this.setLoggedInUser}
                     history={history}
+                    handleLoadExercises={this.handleLoadExercises}
                   />
                 );
               }}

@@ -30,8 +30,8 @@ class LoginForm extends React.Component {
           return alert(`${response.field} is incorrect `);
         }
         this.props.setLoggedInUser(response.userId);
+        this.props.handleLoadExercises(response.exercises)
         localStorage.setItem("PracticePalToken", response.token)
-        
         this.props.history.push('/exercises');
       });
   }

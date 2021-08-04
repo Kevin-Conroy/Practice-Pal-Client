@@ -31,7 +31,7 @@ class Exercises extends React.Component {
       currentTempo: this.state.currentTempo,
       goalTempo: this.state.goalTempo,
     };
-    const url = `http://localhost:8000/exercises/:userid`;
+    const url = `http://localhost:8000/exercises`;
     const options = {
       method: "POST",
       body: JSON.stringify(exercise),
