@@ -49,8 +49,6 @@ class Exercises extends React.Component {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-
         this.setState({
           name: "",
           currentTempo: "",

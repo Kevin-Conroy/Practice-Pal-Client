@@ -15,12 +15,10 @@ class EditTempos extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.props.exercises);
     this.handleUpdateTempos(this.state);
     this.props.updateExercise(this.state);
     this.props.history.push('/exercises');
     const id = this.state.id;
-    console.log(id);
     const updatedExercise = {
       currentTempo: this.state.currentTempo,
       goalTempo: this.state.goalTempo,

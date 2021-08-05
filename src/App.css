@@ -3,22 +3,35 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: 3px;
+  
   
 }
 
 .box {
-  border: 2px solid black;
-  outline: grey solid 5px;
+  border: 3px solid black;
+  outline: white 10px;
   margin: 20px;  
   padding: 5px;
   text-align: center;
+
 }
 
 body {
-  background: white;
-  color: black;
+  background: #640909;
+  animation: fadeInAnimation 1s ease;
+  color: white;
   padding: 40px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   text-align: center;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
 }

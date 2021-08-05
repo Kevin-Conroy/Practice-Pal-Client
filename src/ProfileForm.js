@@ -33,7 +33,6 @@ class ProfileForm extends React.Component {
         "Content-Type": "application/json",
       },
     };
-    console.log(user);
     fetch(url, options)
       .then((res) => {
         if (!res.ok) {
@@ -42,7 +41,6 @@ class ProfileForm extends React.Component {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         this.props.addUser(data);
       })
       .catch((err) => {
