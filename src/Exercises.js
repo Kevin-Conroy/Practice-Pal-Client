@@ -28,9 +28,14 @@ class Exercises extends React.Component {
     const exercise = {
       userId: this.props.userId,
       name: this.state.name,
-      currentTempo: this.state.currentTempo,
-      goalTempo: this.state.goalTempo,
+      currentTempo: Number(this.state.currentTempo),
+      goalTempo: Number(this.state.goalTempo),
+     
     };
+    
+    if (isNaN(this.state.currentTempo) || isNaN(this.state.goalTempo)) {
+      alert("Tempos must be a number")
+    }
     const url = `https://enigmatic-fjord-69798.herokuapp.com/exercises`;
     const options = {
       method: "POST",
@@ -91,17 +96,19 @@ class Exercises extends React.Component {
           <p>Current Tempo:</p>
           <input
             id="current"
-            type="text"
+            type="number"
             placeholder="90"
             onChange={this.handleInput("currentTempo")}
+            value={this.state.currentTempo}
           />
           <br></br>
           <p>Goal Tempo:</p>
           <input
             id="goal"
-            type="text"
+            type="number"
             placeholder="100"
             onChange={this.handleInput("goalTempo")}
+            value={this.state.goalTempo}
           />
           <br></br>
           <input type="submit" value="Add Exercise" />

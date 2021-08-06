@@ -47,6 +47,9 @@ class ProfileForm extends React.Component {
         this.setState({
           error: err.message,
         });
+        if(err.message) {
+          alert("Username is already taken. Please choose another.")
+        }
       });
   }
 

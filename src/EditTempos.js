@@ -23,7 +23,6 @@ class EditTempos extends React.Component {
       currentTempo: this.state.currentTempo,
       goalTempo: this.state.goalTempo,
     };
-
     const url = `https://enigmatic-fjord-69798.herokuapp.com/edittempos/${id}`;
     const options = {
       method: "PATCH",
@@ -69,7 +68,7 @@ class EditTempos extends React.Component {
           <p>Current Tempo:</p>
           <input
             id="current"
-            type="text"
+            type="number"
             value={this.state.currentTempo}
             onChange={this.handleInput("currentTempo")}
           />
@@ -77,7 +76,7 @@ class EditTempos extends React.Component {
           <p>Goal Tempo:</p>
           <input
             id="goal"
-            type="text"
+            type="number"
             value={this.state.goalTempo}
             onChange={this.handleInput("goalTempo")}
           />
